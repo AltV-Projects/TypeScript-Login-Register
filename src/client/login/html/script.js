@@ -27,7 +27,7 @@ const app = new Vue({
           msg: "Password needs to be at least 8 characters",
         });
       }
-      if (this.login.error.length === 0) {
+      if (!this.login.error.length) {
         if ("alt" in window) {
           alt.emit(
             "web::lr::loginAccount",

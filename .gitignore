@@ -114,7 +114,7 @@ dist
 .yarn/build-state.yml
 .pnp.*
 
-# Custom
+# Alt:V
 cache/
 crashdumps/
 data/

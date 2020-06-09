@@ -4,7 +4,9 @@
     "target": "ESNEXT",
     "module": "commonjs",
     "outDir": "./resources/lnr/server",
-    "rootDir": "./src/server"
+    "rootDir": "./src/server",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
   },
   "include": ["./src/server/**/*.ts"]
 }

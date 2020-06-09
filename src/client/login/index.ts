@@ -1,5 +1,6 @@
 import * as alt from "alt-client";
 import * as native from "natives";
+import { IAccountData } from "../interfaces";
 
 let lrView: alt.WebView;
 let localPlayer: alt.Player = alt.Player.local;
@@ -29,13 +30,32 @@ alt.on("connectionComplete", () => {
   });
 
   lrView.on("web::lr::loginAccount", (username: string, password: string) => {
-    alt.emitServer("client::lr:loginAccount", username, password);
+    const data: IAccountData = {
+      username: username,
+      password: password,
+      licenseHash: alt.getLicenseHash(),
+      socialClub: native.scGetNickname(),
+      discordUserID: alt.Discord.currentUser
+        ? alt.Discord.currentUser.id
+        : undefined,
+    };
+    alt.emitServer("client::lr:loginAccount", data);
   });
 
   lrView.on(
     "web::lr::registerAccount",
     (username: string, password: string) => {
-      alt.emitServer("client::lr:registerAccount", username, password);
+      const data: IAccountData = {
+        username: username,
+        password: password,
+        licenseHash: alt.getLicenseHash(),
+        socialClub: native.scGetNickname(),
+        discordUserID: alt.Discord.currentUser
+          ? alt.Discord.currentUser.id
+          : undefined,
+      };
+      console.log(data);
+      alt.emitServer("client::lr:registerAccount", data);
     }
   );
 });

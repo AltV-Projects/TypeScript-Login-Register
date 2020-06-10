@@ -3,7 +3,7 @@
   "compilerOptions": {
     "target": "ESNEXT",
     "module": "commonjs",
-    "outDir": "./resources/lnr/server",
+    "outDir": "./resources/lr/server",
     "rootDir": "./src/server",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true

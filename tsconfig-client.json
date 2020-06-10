@@ -3,7 +3,7 @@
   "compilerOptions": {
     "target": "ESNEXT",
     "module": "ESNEXT",
-    "outDir": "./resources/lnr/client",
+    "outDir": "./resources/lr/client",
     "rootDir": "./src/client"
   },
   "include": ["./src/client/**/*.ts"]

@@ -1,5 +1,5 @@
 export interface IErrorMessage {
   location: string;
-  message: string;
+  msg: string;
   param: string;
 }

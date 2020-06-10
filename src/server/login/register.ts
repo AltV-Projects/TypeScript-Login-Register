@@ -12,12 +12,13 @@ alt.onClient(
   "client::lr:registerAccount",
   async (player: alt.Player, data: IRegisterAccountData) => {
     try {
+      data.socialId = player.socialId;
       const result = await getManager()
         .createQueryBuilder(Account, "account")
         .leftJoinAndSelect("account.validation", "validation")
         .where("account.username = :username", { username: data.username })
         .orWhere("validation.socialId = :socialId", {
-          socialId: player.socialId,
+          socialId: data.socialId,
         })
         .orWhere("validation.scNickname = :scNickname", {
           scNickname: data.socialClub,
@@ -27,26 +28,32 @@ alt.onClient(
         })
         .getOne();
       if (result) {
+        let message: string;
+        if (result.username == data.username)
+          message = "The given username already exists";
+        else if (result.validation.scNickname == data.socialClub)
+          message =
+            "There is already an account linked to your socialclub name";
+        else if (result.validation.socialId == data.socialId)
+          message = "There is already an account linked to your socialclub id";
+
         let err: IErrorMessage = {
           location: "register",
           param: "username",
-          message: "The given username already exists",
+          msg: message,
         };
-        return alt.emitClient(player, "server::showRegistrationError", err);
+        return alt.emitClient(player, "server::lr:showRegistrationError", err);
       }
 
       let accValidation = new AccountValidation();
       accValidation.discordUserID = data.discordUserID;
       accValidation.licenseHash = data.licenseHash;
       accValidation.scNickname = data.socialClub;
-      accValidation.socialId = player.socialId;
+      accValidation.socialId = data.socialId;
 
       let accSaveResult = await getConnection().manager.save(accValidation);
 
-      const rounds: number = process.env.BC_ROUNDS
-        ? parseInt(process.env.BC_ROUNDS)
-        : 10;
-      const salt = await genSalt(rounds);
+      const salt = await genSalt(10);
       const password = await hash(data.password, salt);
 
       let accData = new Account();
@@ -63,14 +70,16 @@ alt.onClient(
       };
 
       player.setSyncedMeta("userData", loginData);
+
+      alt.emitClient(player, "client:lr:registrationSuccessfull");
     } catch (error) {
       alt.log(error);
       let err: IErrorMessage = {
         location: "server",
         param: "",
-        message: "Internal server error, please try again later",
+        msg: "Internal server error, please try again later",
       };
-      return alt.emitClient(player, "server::showRegistrationError", err);
+      return alt.emitClient(player, "server::lr:showRegistrationError", err);
     }
   }
 );

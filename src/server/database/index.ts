@@ -10,9 +10,9 @@ async function connectToDatabase() {
       port: 3306,
       username: "root",
       password: "",
-      database: "lnr",
+      database: "lr",
       synchronize: true,
-      logging: true,
+      logging: false,
       entities: [Account, AccountValidation],
     });
     alt.log("Database connection successfull");

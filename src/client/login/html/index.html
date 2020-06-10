@@ -64,20 +64,22 @@
 
 										<div class="uk-inline">
 											<span class="uk-form-icon" uk-icon="icon: user"></span>
-											<input type="text" placeholder="Username" class="uk-input" v-model="register.username">
+											<input type="text" placeholder="Username" class="uk-input" :disabled="wait"
+												v-model="register.username">
 										</div>
 										<div class="uk-inline">
 											<span class="uk-form-icon" uk-icon="icon: lock"></span>
-											<input type="password" placeholder="Password" class="uk-input" v-model="register.password">
+											<input type="password" placeholder="Password" class="uk-input" :disabled="wait"
+												v-model="register.password">
 										</div>
 										<div class="uk-inline">
 											<span class="uk-form-icon" uk-icon="icon: copy"></span>
-											<input type="password" placeholder="Confirm Password" class="uk-input"
+											<input type="password" placeholder="Confirm Password" :disabled="wait" class="uk-input"
 												v-model="register.confirmPassword">
 										</div>
 										<div class="uk-inline uk-align-right" style="width: 120px;">
 											<span class="uk-form-icon" uk-icon="icon: chevron-right"></span>
-											<input type="submit" value="Register" class="uk-input">
+											<input type="submit" value="Register" class="uk-input" :disabled="wait">
 										</div>
 									</form>
 								</li>

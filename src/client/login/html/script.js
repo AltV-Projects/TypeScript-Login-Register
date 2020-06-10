@@ -2,6 +2,7 @@ const app = new Vue({
   el: "#app",
   data() {
     return {
+      wait: false,
       login: {
         username: "",
         password: "",
@@ -61,6 +62,7 @@ const app = new Vue({
 
       if (this.register.error.length === 0) {
         if ("alt" in window) {
+          this.wait = true;
           alt.emit(
             "web::lr::registerAccount",
             this.register.username,

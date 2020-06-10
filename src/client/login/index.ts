@@ -1,6 +1,6 @@
 import * as alt from "alt-client";
 import * as native from "natives";
-import { IRegisterAccountData } from "../interfaces";
+import { IRegisterAccountData, IErrorMessage } from "../interfaces";
 
 let lrView: alt.WebView;
 let localPlayer: alt.Player = alt.Player.local;
@@ -54,8 +54,37 @@ alt.on("connectionComplete", () => {
           ? alt.Discord.currentUser.id
           : undefined,
       };
-      console.log(data);
       alt.emitServer("client::lr:registerAccount", data);
     }
   );
+});
+
+alt.onServer("server::lr:showRegistrationError", (err: IErrorMessage) => {
+  lrView.emit("client::lr:showRegistrationError", err);
+});
+
+alt.onServer("server::lr:showLoginError", (err: IErrorMessage) => {
+  lrView.emit("client::lr:showLoginError", err);
+});
+
+alt.onServer("client:lr:loginSuccessfull", () => {
+  alt.emit("client::lr:success");
+});
+
+alt.onServer("client:lr:registrationSuccessfull", () => {
+  alt.emit("client::lr:success");
+});
+
+alt.on("client::lr:success", () => {
+  lrView.unfocus();
+  lrView.destroy();
+  lrView = undefined;
+
+  alt.toggleGameControls(true);
+  alt.showCursor(false);
+  native.freezeEntityPosition(localPlayer.scriptID, false);
+  native.displayHud(true);
+  native.displayRadar(true);
+  native.disableControlAction(1, 1, false);
+  native.disableControlAction(1, 2, false);
 });

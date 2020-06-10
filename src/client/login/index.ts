@@ -1,6 +1,6 @@
 import * as alt from "alt-client";
 import * as native from "natives";
-import { IAccountData } from "../interfaces";
+import { IRegisterAccountData } from "../interfaces";
 
 let lrView: alt.WebView;
 let localPlayer: alt.Player = alt.Player.local;
@@ -30,7 +30,7 @@ alt.on("connectionComplete", () => {
   });
 
   lrView.on("web::lr::loginAccount", (username: string, password: string) => {
-    const data: IAccountData = {
+    const data: IRegisterAccountData = {
       username: username,
       password: password,
       licenseHash: alt.getLicenseHash(),
@@ -45,7 +45,7 @@ alt.on("connectionComplete", () => {
   lrView.on(
     "web::lr::registerAccount",
     (username: string, password: string) => {
-      const data: IAccountData = {
+      const data: IRegisterAccountData = {
         username: username,
         password: password,
         licenseHash: alt.getLicenseHash(),

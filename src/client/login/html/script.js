@@ -30,6 +30,7 @@ const app = new Vue({
       }
       if (this.login.error.length === 0) {
         if ("alt" in window) {
+          this.wait = true;
           alt.emit(
             "web::lr::loginAccount",
             this.login.username,
@@ -71,10 +72,20 @@ const app = new Vue({
         }
       }
     },
+    showLoginError(err) {
+      this.login.error.push(err);
+      this.wait = false;
+    },
+    showRegistrationError(err) {
+      this.register.error.push(err);
+      this.wait = false;
+    },
   },
   mounted() {
     if ("alt" in window) {
       alt.emit("web::lr:domContentLoaded");
+      alt.on("client::lr:showRegistrationError", this.showRegistrationError);
+      alt.on("client::lr:showLoginError", this.showLoginError);
     }
   },
 });

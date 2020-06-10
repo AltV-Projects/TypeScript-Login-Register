@@ -41,15 +41,17 @@
 										</div>
 										<div class="uk-inline">
 											<span class="uk-form-icon" uk-icon="icon: user"></span>
-											<input type="text" placeholder="Username" class="uk-input" v-model="login.username">
+											<input type="text" placeholder="Username" class="uk-input" :disabled="wait"
+												v-model="login.username">
 										</div>
 										<div class="uk-inline">
 											<span class="uk-form-icon" uk-icon="icon: lock"></span>
-											<input type="password" placeholder="Password" class="uk-input" v-model="login.password">
+											<input type="password" placeholder="Password" class="uk-input" :disabled="wait"
+												v-model="login.password">
 										</div>
 										<div class="uk-inline uk-align-right" style="width: 100px;">
 											<span class="uk-form-icon" uk-icon="icon: chevron-right"></span>
-											<input type="submit" value="Login" class="uk-input">
+											<input type="submit" value="Login" class="uk-input" :disabled="wait">
 										</div>
 									</form>
 								</li>

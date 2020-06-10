@@ -1,23 +1,43 @@
-# TypeScript-Boilerplate
+# TypeScript Login & Register Boilerplate
 
-A basic boilerplate to get started using a login/register script with alt:V
+A basic boilerplate to get started using a login/register script with alt:V.
 
 ## Installation
 
-To install all dependencies just enter the following:
+To begin with, you need to know which database you're using. Typeorm supports the following databases as of now:
+
+- MySQL
+- MariaDB
+- Postgres
+- CockroachDB
+- SQLite
+- Microsoft SQL Server
+- Oracle
+- SAP Hana
+- sql.js
+
+Pick your database and install it via npm/yarn. An example to install MariaDB would be:
+
+```bash
+npm i mariadb
+```
+
+To install all other missing dependencies just enter the following:
 
 ```bash
 npm i
 ```
 
-## Usage
+After you installed all dependencies, you need to configure your database connection. This file can be found inside `scr/server/database/index.ts`. Here you can change all database params to your needs.
 
-Best practice is to use 3 terminal windows. (I prefer using [cmder](https://cmder.net/) on Windows)
+**ATTENTION:** Don't use an account with root access to your database. Otherwise you can be sure, your data gets stolen or compromized.
 
-```text
-npm run build:server:watch //Build server files on the fly
-npm run build:client:watch //Build client files on the fly
-npm run copy:meta // Copy files like .html, .js, .css
+## Building the resource
+
+To build the project you basicly just need to run the build command:
+
+```bash
+npm run build
 ```
 
 ## Contributing

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Login/Register</title>
+	<!-- UIkit CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.3/dist/css/uikit.min.css" />
+
+	<!-- UIkit JS -->
+	<script src="https://cdn.jsdelivr.net/npm/uikit@3.5.3/dist/js/uikit.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/uikit@3.5.3/dist/js/uikit-icons.min.js"></script>
+	<link rel="stylesheet" href="style.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js"></script>
+</head>
+
+<body>
+	<div id="app">
+		<div id="login">
+			<div uk-grid>
+				<div class="uk-width-1-3"></div>
+				<div class="uk-width-1-3 uk-card uk-card-default uk-card-body" id="loginbox">
+					<div class="uk-align-center">
+						<h3>Beautiful Server</h3>
+					</div>
+					<div uk-grid>
+						<div>
+							<ul uk-tab>
+								<li><a href="#">Login</a></li>
+								<li><a href="#">Register</a></li>
+							</ul>
+							<ul class="uk-switcher">
+								<li>
+									<form @submit.prevent="checkLogin()">
+										<div id="error" v-if="login.error.length">
+											<h5>The following errors occured:</h5>
+											<ul class="uk-list uk-list-bullet">
+												<li v-for="error in login.error">{{ error.msg }}</li>
+											</ul>
+										</div>
+										<div class="uk-inline">
+											<span class="uk-form-icon" uk-icon="icon: user"></span>
+											<input type="text" placeholder="Username" class="uk-input" :disabled="wait"
+												v-model="login.username">
+										</div>
+										<div class="uk-inline">
+											<span class="uk-form-icon" uk-icon="icon: lock"></span>
+											<input type="password" placeholder="Password" class="uk-input" :disabled="wait"
+												v-model="login.password">
+										</div>
+										<div class="uk-inline uk-align-right" style="width: 100px;">
+											<span class="uk-form-icon" uk-icon="icon: chevron-right"></span>
+											<input type="submit" value="Login" class="uk-input" :disabled="wait">
+										</div>
+									</form>
+								</li>
+								<li>
+									<form @submit.prevent="checkRegistration()">
+										<div id="error" v-if="register.error.length">
+											<h5>The following errors occured:</h5>
+											<ul class="uk-list uk-list-bullet">
+												<li v-for="error in register.error">{{ error.msg }}</li>
+											</ul>
+										</div>
+
+										<div class="uk-inline">
+											<span class="uk-form-icon" uk-icon="icon: user"></span>
+											<input type="text" placeholder="Username" class="uk-input" :disabled="wait"
+												v-model="register.username">
+										</div>
+										<div class="uk-inline">
+											<span class="uk-form-icon" uk-icon="icon: lock"></span>
+											<input type="password" placeholder="Password" class="uk-input" :disabled="wait"
+												v-model="register.password">
+										</div>
+										<div class="uk-inline">
+											<span class="uk-form-icon" uk-icon="icon: copy"></span>
+											<input type="password" placeholder="Confirm Password" :disabled="wait" class="uk-input"
+												v-model="register.confirmPassword">
+										</div>
+										<div class="uk-inline uk-align-right" style="width: 120px;">
+											<span class="uk-form-icon" uk-icon="icon: chevron-right"></span>
+											<input type="submit" value="Register" class="uk-input" :disabled="wait">
+										</div>
+									</form>
+								</li>
+							</ul>
+						</div>
+
+					</div>
+
+				</div>
+				<div class="uk-width-1-3"></div>
+			</div>
+		</div>
+	</div>
+	<script src="script.js"></script>
+</body>
+
+</html>

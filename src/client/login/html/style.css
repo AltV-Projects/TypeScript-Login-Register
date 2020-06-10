@@ -1,0 +1,30 @@
+html {
+  background: transparent;
+}
+
+#app {
+  position: fixed;
+  top: 30vh;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%);
+}
+
+#loginbox {
+  width: 500px;
+}
+
+.input {
+  width: 100%;
+}
+
+.uk-tab,
+.uk-first-column,
+.uk-inline {
+  width: 100%;
+}
+
+.uk-input {
+  margin-bottom: 2px;
+  width: 100%;
+}

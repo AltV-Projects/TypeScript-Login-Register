@@ -4,7 +4,7 @@ import {
   IErrorMessage,
   ILoginAccountData,
 } from "../interfaces";
-import { getManager, getConnection } from "typeorm";
+import { getConnection } from "typeorm";
 import { Account, AccountValidation } from "../database/entity";
 import { genSalt, hash } from "bcryptjs";
 
@@ -13,7 +13,8 @@ alt.onClient(
   async (player: alt.Player, data: IRegisterAccountData) => {
     try {
       data.socialId = player.socialId;
-      const result = await getManager()
+      const loginConnection = getConnection("lr");
+      const result = await loginConnection
         .createQueryBuilder(Account, "account")
         .leftJoinAndSelect("account.validation", "validation")
         .where("account.username = :username", { username: data.username })

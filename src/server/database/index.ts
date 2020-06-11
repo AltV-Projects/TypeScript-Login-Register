@@ -5,6 +5,7 @@ import { Account, AccountValidation } from "./entity";
 async function connectToDatabase() {
   try {
     await createConnection({
+      name: "lr",
       type: "mariadb",
       host: "localhost",
       port: 3306,

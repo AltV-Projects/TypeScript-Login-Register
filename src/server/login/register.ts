@@ -52,7 +52,7 @@ alt.onClient(
       accValidation.scNickname = data.socialClub;
       accValidation.socialId = data.socialId;
 
-      let accSaveResult = await getConnection("lr").manager.save(accValidation);
+      let accSaveResult = await loginConnection.manager.save(accValidation);
 
       const salt = await genSalt(10);
       const password = await hash(data.password, salt);
@@ -62,7 +62,7 @@ alt.onClient(
       accData.password = password;
       accData.validation = accSaveResult;
 
-      await getConnection("lr").manager.save(accData);
+      await loginConnection.manager.save(accData);
 
       const loginData: ILoginAccountData = {
         socialClub: accData.validation.scNickname,

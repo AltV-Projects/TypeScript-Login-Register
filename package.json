@@ -31,8 +31,8 @@
     "@altv/types-server": "^1.2.0",
     "@altv/types-webview": "^1.0.2",
     "@types/bcryptjs": "^2.4.2",
-    "@types/node": "^13.13.2",
-    "typescript": "^3.8.3"
+    "@types/node": "^13.13.12",
+    "typescript": "^3.9.5"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

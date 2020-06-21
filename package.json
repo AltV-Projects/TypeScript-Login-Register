@@ -7,7 +7,7 @@
     "build": "tsc -p tsconfig-server.json && tsc -p tsconfig-client.json && npm run copy:meta",
     "build:server:watch": "tsc -w -p tsconfig-server.json",
     "build:client:watch": "tsc -w -p tsconfig-client.json",
-    "copy:meta": "cd ./src && copyfiles resource.cfg ../resources/lr/  && copyfiles ./client/**/*.html ./client/**/*.js ./client/**/*.css ../resources/lr/"
+    "copy:meta": "cd ./src && cpx resource.cfg ../resources/lr/ && cpx ./client/**/*.!(ts) ../resources/lr/"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,7 @@
     "gta5"
   ],
   "author": "Mario Franze <mfranze@codingden.de>",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/AltV-Projects/TypeScript-Boilerplate/issues"
   },
@@ -32,11 +32,11 @@
     "@altv/types-webview": "^1.0.2",
     "@types/bcryptjs": "^2.4.2",
     "@types/node": "^13.13.2",
-    "copyfiles": "^2.2.0",
     "typescript": "^3.8.3"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "cpx": "^1.5.0",
     "mysql": "^2.18.1",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.2.25"

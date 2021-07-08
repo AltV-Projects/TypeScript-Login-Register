@@ -19,7 +19,7 @@ module.exports = {
   },
   output: {
     filename: "server.js",
-    path: path.resolve(__dirname, "../resources/lr"),
+    path: path.resolve(__dirname, "resources/lr"),
   },
   resolve: {
     extensions: [".js", ".json", ".ts"],

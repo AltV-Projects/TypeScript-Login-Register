@@ -27,7 +27,7 @@ module.exports = {
                 source: path.join(__dirname, "src/client/login/html"),
                 destination: path.join(
                   __dirname,
-                  "../resources/lr/client/html"
+                  "resources/lr/client/html"
                 ),
               },
             ],
@@ -38,7 +38,7 @@ module.exports = {
   ],
   output: {
     filename: "client.js",
-    path: path.resolve(__dirname, "../resources/lr"),
+    path: path.resolve(__dirname, "resources/lr"),
   },
   resolve: {
     extensions: [".js", ".json", ".ts"],

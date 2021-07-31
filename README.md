@@ -28,7 +28,7 @@ To install all other missing dependencies just enter the following:
 npm i
 ```
 
-After you installed all dependencies, you need to configure your database connection. This file can be found inside `scr/server/database/index.ts`. Here you can change all database params to your needs.
+After you installed all dependencies, you need to configure your database connection. This file can be found inside `src/server/database/index.ts`. Here you can change all database params to your needs.
 
 **ATTENTION:** Don't use an account with root access to your database. Otherwise you can be sure, your data gets stolen or compromized.
 

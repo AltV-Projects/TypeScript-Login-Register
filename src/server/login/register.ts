@@ -12,7 +12,7 @@ alt.onClient(
   "client::lr:registerAccount",
   async (player: alt.Player, data: IRegisterAccountData) => {
     try {
-      data.socialId = player.socialId;
+      data.socialId = player.socialID;
       const loginConnection = getConnection("lr");
       const result = await loginConnection
         .createQueryBuilder(Account, "account")

@@ -34,7 +34,7 @@ alt.on("connectionComplete", () => {
       username: username,
       password: password,
       licenseHash: alt.getLicenseHash(),
-      socialClub: native.scGetNickname(),
+      socialClub: native.scAccountInfoGetNickname(),
       discordUserID: alt.Discord.currentUser
         ? alt.Discord.currentUser.id
         : undefined,
@@ -49,7 +49,7 @@ alt.on("connectionComplete", () => {
         username: username,
         password: password,
         licenseHash: alt.getLicenseHash(),
-        socialClub: native.scGetNickname(),
+        socialClub: native.scAccountInfoGetNickname(),
         discordUserID: alt.Discord.currentUser
           ? alt.Discord.currentUser.id
           : undefined,

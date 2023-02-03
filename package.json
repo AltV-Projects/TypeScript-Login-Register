@@ -6,7 +6,8 @@
   "scripts": {
     "build": "npm run build:server && npm run build:client",
     "build:server": "webpack -c webpack.server.config.js",
-    "build:client": "webpack -c webpack.client.config.js"
+    "build:client": "webpack -c webpack.client.config.js",
+    "update": "npx npm-check-updates -u && npm install"
   },
   "repository": {
     "type": "git",
